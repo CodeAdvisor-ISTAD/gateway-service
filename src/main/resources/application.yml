@@ -1,0 +1,114 @@
+client-security-matchers: >
+  /login/**,
+  /oauth2/**,
+  /api/v1/auth/user/**,
+  /home/**,
+  /logout/**,
+  /identity/**,
+  /en/**,
+  /auth/**,
+  /business/**,
+  /profile/**
+
+client-permit-matchers: >
+  /login/**,
+  /oauth2/**,
+  /api/v1/auth/user/**,
+  /home/**,
+  /en/**,
+  /auth/**,
+  /identity/**,
+  /contactSupport/**,
+  /error/**,
+  /actuator/**,
+  /info/**,
+  /health/**,
+  /prometheus/**,
+  /business/**,
+  /profile/**
+
+spring:
+  security:
+    oauth2:
+      client:
+        provider:
+#          google:
+#            authorization-uri: https://accounts.google.com/o/oauth2/auth
+#            token-uri: https://accounts.google.com/o/oauth2/token
+#            user-info-uri: https://www.googleapis.com/oauth2/v3/userinfo
+#            user-name-attribute: sub
+          CodeAdvisor:
+            issuer-uri: http://127.0.0.1:9090
+        registration:
+#           Register google Service
+#          google:
+#            provider: google
+#            client-id: 897037474382-1eipe3mffu6ielod7kma05fbc1h3siic.apps.googleusercontent.com
+#            client-secret: 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
+#            authorization-grant-type:
+#              - authorization_code
+#            scope: openid, profile, email
+#            redirect-uri: http://localhost:8168/
+#            client-authentication-method: client_secret_post
+
+          # Register CodeAdvisor Service
+          CodeAdvisor:
+            provider: CodeAdvisor
+            client-id: CodeAdvisor
+            client-secret: qwerqwer
+            authorization-grant-type:
+              - authorization_code
+            scope: openid, profile, email
+            redirect-uri: http://127.0.0.1:8168/login/oauth2/code/CodeAdvisor
+  application:
+    name: gateway-server
+  cloud:
+    gateway:
+      discovery:
+        locator:
+          enabled: false
+          lower-case-service-id: true
+      default-filters:
+        - DedupeResponseHeader=Access-Control-Allow-Credentials Access-Control-Allow-Origin Access-Control-Request-Headers
+        - SaveSession
+      routes:
+        - id: identity # Register Identity Service
+          uri: http://127.0.0.1:9090
+          predicates:
+            - Path=/identity/**
+          filters:
+            - TokenRelay=
+            - RewritePath=/identity/(?<segment>.*),/$\{segment}
+
+        - id: codeAdvisor-ui # Register Frontend (NextJS)
+          uri: http://127.0.0.1:3000
+          predicates:
+            - Path=/**
+
+logging:
+  level:
+    root: INFO
+    org.springframework.cloud.gateway.route.RouteDefinitionRouteLocator: INFO
+    org.springframework.cloud.gateway: TRACE
+    org.springframework.web.server.adapter.HttpWebHandlerAdapter: TRACE
+
+server:
+  port: 8168
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+  health:
+    readiness-state:
+      enabled: true
+    liveness-state:
+      enabled: true
+  endpoint:
+    gateway:
+      enabled: true
+    health:
+      probes:
+        enabled: true
+      show-details: always

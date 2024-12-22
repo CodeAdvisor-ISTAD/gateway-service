@@ -79,11 +79,19 @@ spring:
           filters:
             - TokenRelay=
             - RewritePath=/identity/(?<segment>.*),/$\{segment}
+        - id: content-service # Register Frontend (NextJS)
+          uri: http://127.0.0.1:8081
+          predicates:
+            - Path=/contents/**
+          filters:
+            - TokenRelay=
+            - RewritePath=/contents/(?<segment>.*),/$\{segment}
 
         - id: codeAdvisor-ui # Register Frontend (NextJS)
           uri: http://127.0.0.1:3000
           predicates:
             - Path=/**
+
 
 logging:
   level:

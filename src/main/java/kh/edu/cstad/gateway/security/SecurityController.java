@@ -22,16 +22,23 @@ public class SecurityController {
         OAuth2AuthenticationToken oauth2 = (OAuth2AuthenticationToken) auth;
         OidcUser oidcUser = (OidcUser) oauth2.getPrincipal();
 
-        System.out.println("SHOW: " + oidcUser.getAttributes());
-
-        String uuid = oidcUser.getAttribute("uuid");
-        String reksmey1 = oidcUser.getIdToken().getClaimAsString("seu");
+        String userUuid = oidcUser.getIdToken().getClaimAsString("userUuid");
+        String username = oidcUser.getIdToken().getClaimAsString("username");
+        String fullName = oidcUser.getIdToken().getClaimAsString("fullName");
+        String email = oidcUser.getIdToken().getClaimAsString("email");
+        String profileImage = oidcUser.getIdToken().getClaimAsString("profileImage");
+        String coverImage = oidcUser.getIdToken().getClaimAsString("coverImage");
 
         return new UserProfile(
-                oidcUser.getName(),
-                uuid,
-                reksmey1
+                userUuid,
+                username,
+                fullName,
+                email,
+                profileImage,
+                coverImage
+
         );
     }
 
 }
+

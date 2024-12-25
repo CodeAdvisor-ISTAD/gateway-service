@@ -22,6 +22,12 @@ client-permit-matchers: >
   /profile/**
 
 spring:
+  profiles:
+    active: dev
+  config:
+    import: "configserver:"
+
+
   security:
     oauth2:
       client:
@@ -57,6 +63,8 @@ spring:
   application:
     name: gateway-server
   cloud:
+    config:
+      uri: http://167.172.78.79:8888
     gateway:
       discovery:
         locator:
@@ -118,3 +126,9 @@ management:
       probes:
         enabled: true
       show-details: always
+  config:
+    import: "configserver:"
+
+  cloud:
+    config:
+      uri: http://167.172.78.79:8888

@@ -5,8 +5,7 @@ public record UserProfile(
         String username,
         String fullName,
         String email,
-        String profileImage,
-        String coverImage
+        String profileImage
 ) {
 }
 

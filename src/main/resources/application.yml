@@ -92,7 +92,7 @@ spring:
             - RewritePath=/contents/(?<segment>.*),/$\{segment}
 
         - id: forum-code-advisors
-          uri: http://127.0.0.1:8080
+          uri: http://127.0.0.1:8081
           predicates:
             - Path=/forum/**
           filters:

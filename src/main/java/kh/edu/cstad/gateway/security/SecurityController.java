@@ -18,7 +18,10 @@ import java.util.Optional;
 public class SecurityController {
 
     @GetMapping("/profile")
-    UserProfile secured(@AuthenticationPrincipal Authentication auth) {
+    UserProfile secured(Authentication auth) {
+
+        System.out.println("PROFILE: " + auth);
+
         OAuth2AuthenticationToken oauth2 = (OAuth2AuthenticationToken) auth;
         OidcUser oidcUser = (OidcUser) oauth2.getPrincipal();
 

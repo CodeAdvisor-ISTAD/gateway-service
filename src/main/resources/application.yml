@@ -1,11 +1,12 @@
 client-security-matchers: >
+  /forum/**,
   /login/**,
   /oauth2/**,
   /logout/**,
   /en/**,
   /auth/**,
   /business/**,
-  /profile/**
+  /profile/**,
 
 client-permit-matchers: >
   /login/**,
@@ -90,8 +91,16 @@ spring:
             - TokenRelay=
             - RewritePath=/contents/(?<segment>.*),/$\{segment}
 
+        - id: forum-code-advisors
+          uri: http://127.0.0.1:8080
+          predicates:
+            - Path=/forum/**
+          filters:
+            - TokenRelay=
+            - RewritePath=/forum/(?<segment>.*),/$\{segment}
+
         - id: codeAdvisor-ui # Register Frontend (NextJS)
-          uri: http://localhost:3000
+          uri: http://127.0.0.1:3000
           predicates:
             - Path=/**
           filters:

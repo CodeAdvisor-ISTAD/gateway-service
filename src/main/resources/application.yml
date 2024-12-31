@@ -7,6 +7,10 @@ client-security-matchers: >
   /auth/**,
   /business/**,
   /profile/**,
+  /contents/**,
+    /users/**,
+    /media/**,
+    /forums/**,
 
 client-permit-matchers: >
   /login/**,
@@ -98,6 +102,22 @@ spring:
           filters:
             - TokenRelay=
             - RewritePath=/forum/(?<segment>.*),/$\{segment}
+
+        - id: user-service
+          uri: http://127.0.0.1:8085
+          predicates:
+            - Path=/users/**
+          filters:
+            - TokenRelay=
+            - RewritePath=/users/(?<segment>.*),/$\{segment}
+
+        - id: media-service
+          uri: http://167.172.78.79/:8090
+          predicates:
+            - Path=/media/**
+          filters:
+            - TokenRelay=
+            - RewritePath=/users/(?<segment>.*),/$\{segment}
 
         - id: codeAdvisor-ui # Register Frontend (NextJS)
           uri: http://127.0.0.1:3000

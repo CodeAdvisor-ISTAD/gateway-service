@@ -12,6 +12,7 @@ client-security-matchers: >
     /media/**,
 
 client-permit-matchers: >
+  /forums/**,
   /login/**,
   /oauth2/**,
   /en/**,

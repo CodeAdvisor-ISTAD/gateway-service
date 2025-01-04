@@ -106,10 +106,10 @@ spring:
         - id: forum-code-advisors
           uri: http://127.0.0.1:8081
           predicates:
-            - Path=/forum/**
+            - Path=/forums/**
           filters:
             - TokenRelay=
-            - RewritePath=/forum/(?<segment>.*),/$\{segment}
+            - RewritePath=/forums/(?<segment>.*),/$\{segment}
 
         - id: user-service
           uri: http://127.0.0.1:8085
@@ -185,26 +185,3 @@ management:
   cloud:
     config:
       uri: http://167.172.78.79:8888
-
-
-
-#- Forum Discussion Service
-#  Port: 8081
-#
-#- Content sharing
-#  Port: 8082
-#
-#- Media service
-#  Port: 8090
-#
-#- Notification service
-#  Port: 8084
-#
-#- User service
-#  Port: 8085
-#
-#- Community engagement service
-#  Port: 8086
-#
-#- Content discovery service
-#  Port: 8087

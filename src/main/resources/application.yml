@@ -8,11 +8,19 @@ client-security-matchers: >
   /business/**,
   /profile/**,
   /contents/**,
-    /users/**,
-    /media/**,
-    /forums/**,
+  /users/**,
+  /media/**,
+  /forums/**,
+  /notification/**,
+  /community/**
 
 client-permit-matchers: >
+  /contents/**,
+  /users/**,
+  /media/**,
+  /forums/**,
+  /notification/**,
+  /community/**
   /login/**,
   /oauth2/**,
   /en/**,
@@ -112,12 +120,28 @@ spring:
             - RewritePath=/users/(?<segment>.*),/$\{segment}
 
         - id: media-service
-          uri: http://167.172.78.79/:8090
+          uri: http://167.172.78.79:8090
           predicates:
             - Path=/media/**
           filters:
             - TokenRelay=
             - RewritePath=/users/(?<segment>.*),/$\{segment}
+
+        - id: notification-service
+          uri: http://127.0.0.1:8084
+          predicates:
+            - Path=/notification/**
+          filters:
+            - TokenRelay=
+            - RewritePath=/notification/(?<segment>.*),/$\{segment}
+
+        - id: community-engagement-service
+          uri: http://127.0.0.1:8086
+          predicates:
+            - Path=/community/**
+          filters:
+            - TokenRelay=
+            - RewritePath=/community/(?<segment>.*),/$\{segment}
 
         - id: codeAdvisor-ui # Register Frontend (NextJS)
           uri: http://127.0.0.1:3000
@@ -161,3 +185,26 @@ management:
   cloud:
     config:
       uri: http://167.172.78.79:8888
+
+
+
+#- Forum Discussion Service
+#  Port: 8081
+#
+#- Content sharing
+#  Port: 8082
+#
+#- Media service
+#  Port: 8090
+#
+#- Notification service
+#  Port: 8084
+#
+#- User service
+#  Port: 8085
+#
+#- Community engagement service
+#  Port: 8086
+#
+#- Content discovery service
+#  Port: 8087

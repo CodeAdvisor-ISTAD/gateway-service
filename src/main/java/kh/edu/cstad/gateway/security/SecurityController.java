@@ -18,9 +18,9 @@ public class SecurityController {
         if (oauth2 instanceof OAuth2User) {
             System.out.println("OAUTH2USER: " + oauth2);
         }
-        System.out.println("PROFILE: " + auth.getPrincipal());
 
         OidcUser oidcUser = (OidcUser) oauth2;
+
         String userUuid = oidcUser.getIdToken().getClaimAsString("userUuid");
         String username = oidcUser.getIdToken().getClaimAsString("username");
         String fullName = oidcUser.getIdToken().getClaimAsString("fullName");

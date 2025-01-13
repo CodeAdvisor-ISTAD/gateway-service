@@ -1,4 +1,5 @@
 client-security-matchers: >
+  /forums/**,
   /login/**,
   /oauth2/**,
   /logout/**,
@@ -6,7 +7,6 @@ client-security-matchers: >
   /auth/**,
   /business/**,
   /profile/**,
-  /forums/**,
   /contents/**,
     /users/**,
     /media/**,

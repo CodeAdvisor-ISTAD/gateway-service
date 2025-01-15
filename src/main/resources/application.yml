@@ -15,6 +15,7 @@ client-security-matchers: >
   /community/**
 
 client-permit-matchers: >
+  /forum/**,
   /users/**",
   /contents/**,
   /users/**,
@@ -107,10 +108,10 @@ spring:
         - id: forum-code-advisors
           uri: http://127.0.0.1:8081
           predicates:
-            - Path=/forum/**
+            - Path=/forums/**
           filters:
             - TokenRelay=
-            - RewritePath=/forum/(?<segment>.*),/$\{segment}
+            - RewritePath=/forums/(?<segment>.*),/$\{segment}
 
         - id: user-service
           uri: http://127.0.0.1:8085

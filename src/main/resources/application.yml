@@ -23,6 +23,7 @@ client-permit-matchers: >
   /forums/**,
   /notification/**,
   /community/**
+  /users/**,
   /login/**,
   /oauth2/**,
   /en/**,
@@ -108,10 +109,10 @@ spring:
         - id: forum-code-advisors
           uri: http://127.0.0.1:8081
           predicates:
-            - Path=/forums/**
+            - Path=/forum/**
           filters:
             - TokenRelay=
-            - RewritePath=/forums/(?<segment>.*),/$\{segment}
+            - RewritePath=/forum/(?<segment>.*),/$\{segment}
 
         - id: user-service
           uri: http://127.0.0.1:8085

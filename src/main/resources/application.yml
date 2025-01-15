@@ -8,13 +8,14 @@ client-security-matchers: >
   /business/**,
   /profile/**,
   /contents/**,
-    /users/**,
-    /media/**,
+  /users/**,
+  /media/**,
 
 client-permit-matchers: >
   /forums/**,
   /notification/**,
   /community/**
+  /users/**,
   /login/**,
   /oauth2/**,
   /en/**,

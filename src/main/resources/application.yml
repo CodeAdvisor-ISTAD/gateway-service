@@ -128,7 +128,7 @@ spring:
             - Path=/media/**
           filters:
             - TokenRelay=
-            - RewritePath=/mdia/(?<segment>.*),/$\{segment}
+            - RewritePath=/media/(?<segment>.*),/$\{segment}
             
         - id: notification-service
           uri: http://127.0.0.1:8084

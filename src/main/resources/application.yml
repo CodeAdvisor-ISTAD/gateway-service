@@ -133,7 +133,7 @@ spring:
         - id: notification-service
           uri: http://127.0.0.1:8084
           predicates:
-            - Path=/notifications/**
+            - Path=/**
           filters:
             - TokenRelay=
             - RewritePath=/notifications/(?<segment>.*),/$\{segment}

@@ -133,10 +133,10 @@ spring:
         - id: notification-service
           uri: http://127.0.0.1:8084
           predicates:
-            - Path=/**
+            - Path=/notifications/**
           filters:
             - TokenRelay=
-            - RewritePath=/(?<segment>.*),/$\{segment}
+            - RewritePath=/notifications/(?<segment>.*),/$\{segment}
 
         - id: codeAdvisor-ui # Register Frontend (NextJS)
           uri: http://127.0.0.1:3000

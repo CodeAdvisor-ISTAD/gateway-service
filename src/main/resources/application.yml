@@ -136,7 +136,7 @@ spring:
             - Path=/**
           filters:
             - TokenRelay=
-            - RewritePath=/notifications/(?<segment>.*),/$\{segment}
+            - RewritePath=/(?<segment>.*),/$\{segment}
 
         - id: codeAdvisor-ui # Register Frontend (NextJS)
           uri: http://127.0.0.1:3000

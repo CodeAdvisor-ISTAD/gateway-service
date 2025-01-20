@@ -123,12 +123,20 @@ spring:
             - RewritePath=/users/(?<segment>.*),/$\{segment}
 
         - id: media-service
-          uri: http://167.172.78.79/:8090
+          uri: http://167.172.78.79:8090
           predicates:
             - Path=/media/**
           filters:
             - TokenRelay=
-            - RewritePath=/users/(?<segment>.*),/$\{segment}
+            - RewritePath=/mdia/(?<segment>.*),/$\{segment}
+            
+        - id: notification-service
+          uri: http://127.0.0.1:8084
+          predicates:
+            - Path=/notifications/**
+          filters:
+            - TokenRelay=
+            - RewritePath=/notifications/(?<segment>.*),/$\{segment}
 
         - id: codeAdvisor-ui # Register Frontend (NextJS)
           uri: http://127.0.0.1:3000
@@ -136,7 +144,7 @@ spring:
             - Path=/**
           filters:
             - TokenRelay=
-
+          
 
 
 logging:

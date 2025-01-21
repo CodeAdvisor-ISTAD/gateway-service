@@ -38,8 +38,10 @@ client-permit-matchers: >
   /profile/**
 
 spring:
-#  profiles:
-#    active: dev
+  application:
+    name: gateway-server
+  profiles:
+    active: dev
   config:
     import: "configserver:"
   cloud:

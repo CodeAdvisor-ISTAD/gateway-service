@@ -38,8 +38,8 @@ client-permit-matchers: >
   /profile/**
 
 spring:
-  profiles:
-    active: dev
+#  profiles:
+#    active: dev
   config:
     import: "configserver:"
 

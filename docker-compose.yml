@@ -1,0 +1,19 @@
+services:
+  code-advisors-gateway-service:
+    container_name: code-advisors-gateway-service # Set the container name
+    build:
+      context: . # Use the current directory for building
+    ports:
+      - "1168:8168" # Map the application port
+    environment:
+      SPRING_PROFILES_ACTIVE: prod # Set Spring profile if needed
+    volumes:
+      - code-advisors-gateway-logs:/app/logs # Optional: Map logs to a local directory
+
+volumes:
+  code-advisors-gateway-logs:
+
+networks:
+  default:
+    external:
+      name: code-advisors-network

@@ -142,6 +142,7 @@ spring:
 
 logging:
   level:
+    org.springframework.security: debug
     root: INFO
     org.springframework.cloud.gateway.route.RouteDefinitionRouteLocator: INFO
     org.springframework.cloud.gateway: TRACE

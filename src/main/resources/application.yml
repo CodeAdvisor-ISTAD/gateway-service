@@ -143,7 +143,12 @@ spring:
 logging:
   level:
     org.springframework.cloud.gateway: debug
-    org.springframework.security: debug
+    org.springframework.security:
+      web: debug
+      cloud:
+        gateway:
+          filter:
+            TokenRelayGatewayFilterFactory: debug
     root: INFO
     org.springframework.cloud.gateway.route.RouteDefinitionRouteLocator: INFO
     org.springframework.web.server.adapter.HttpWebHandlerAdapter: TRACE

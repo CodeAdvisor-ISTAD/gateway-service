@@ -142,10 +142,10 @@ spring:
 
 logging:
   level:
+    org.springframework.cloud.gateway: debug
     org.springframework.security: debug
     root: INFO
     org.springframework.cloud.gateway.route.RouteDefinitionRouteLocator: INFO
-    org.springframework.cloud.gateway: TRACE
     org.springframework.web.server.adapter.HttpWebHandlerAdapter: TRACE
 
 server:

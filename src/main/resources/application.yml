@@ -1,4 +1,7 @@
 client-security-matchers: >
+  /bookmark/**,
+  /history/**,
+  /ces/**,
   /forum/**,
   /login/**,
   /oauth2/**,
@@ -15,6 +18,7 @@ client-security-matchers: >
   /community/**
 
 client-permit-matchers: >
+  /ces/**,
   /forum/**,
   /users/**",
   /contents/**,

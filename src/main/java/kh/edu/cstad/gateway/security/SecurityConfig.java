@@ -17,6 +17,8 @@ import org.springframework.security.web.server.authentication.logout.ServerLogou
 import org.springframework.security.web.server.util.matcher.OrServerWebExchangeMatcher;
 import org.springframework.security.web.server.util.matcher.PathPatternParserServerWebExchangeMatcher;
 import org.springframework.security.web.server.util.matcher.ServerWebExchangeMatcher;
+import org.springframework.web.reactive.socket.client.ReactorNettyWebSocketClient;
+import org.springframework.web.reactive.socket.client.WebSocketClient;
 
 import java.net.URI;
 import java.util.stream.Stream;
@@ -74,4 +76,8 @@ public class SecurityConfig {
         return redirectServerLogoutSuccessHandler;
     }
 
+    @Bean
+    public WebSocketClient webSocketClient() {
+        return new ReactorNettyWebSocketClient();
+    }
 }

@@ -6,7 +6,7 @@ services:
     ports:
       - "1168:8168" # Map the application port
     environment:
-      SPRING_PROFILES_ACTIVE: prod # Set Spring profile if needed
+      SPRING_PROFILES_ACTIVE: seu # Set Spring profile if needed
     volumes:
       - code-advisors-gateway-logs:/app/logs # Optional: Map logs to a local directory
 

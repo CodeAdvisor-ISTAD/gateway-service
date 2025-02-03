@@ -54,10 +54,10 @@ public class SecurityConfig {
 
         http
                 .oauth2Login(oAuth2LoginSpec -> {
-                    oAuth2LoginSpec.authenticationSuccessHandler(new RedirectServerAuthenticationSuccessHandler("/success"));
+                    oAuth2LoginSpec.authenticationSuccessHandler(new RedirectServerAuthenticationSuccessHandler("/"));
                     oAuth2LoginSpec.authenticationFailureHandler(new RedirectServerAuthenticationFailureHandler("/401"));
                     oAuth2LoginSpec.authorizationRequestResolver(pkceResolver(repository));
-                    oAuth2LoginSpec.authenticationSuccessHandler(roleBasedAuthenticationSuccessHandler);
+//                    oAuth2LoginSpec.authenticationSuccessHandler(roleBasedAuthenticationSuccessHandler);
 
                 })
                 .httpBasic(ServerHttpSecurity.HttpBasicSpec::disable)

@@ -19,6 +19,7 @@ import org.springframework.security.web.server.util.matcher.PathPatternParserSer
 import org.springframework.security.web.server.util.matcher.ServerWebExchangeMatcher;
 import org.springframework.web.reactive.socket.client.ReactorNettyWebSocketClient;
 import org.springframework.web.reactive.socket.client.WebSocketClient;
+import org.springframework.web.server.WebFilter;
 
 import java.net.URI;
 import java.util.stream.Stream;
@@ -79,5 +80,15 @@ public class SecurityConfig {
     @Bean
     public WebSocketClient webSocketClient() {
         return new ReactorNettyWebSocketClient();
+    }
+
+    @Bean
+    public WebFilter logTokenRelay() {
+        return (exchange, chain) -> {
+            exchange.getRequest().getHeaders().forEach((name, values) -> {
+                System.out.println(name + ": " + values);
+            });
+            return chain.filter(exchange);
+        };
     }
 }

@@ -34,18 +34,18 @@ public class RoleBasedAuthenticationSuccessHandler implements ServerAuthenticati
                     .flatMap(authorizedClient -> {
                         OAuth2AccessToken accessToken = authorizedClient.getAccessToken();
                         log.info("Access Token:: {}", accessToken.getTokenValue());
-//                        if (accessToken != null) {
-//                            return extractRolesFromToken(accessToken.getTokenValue())
-//                                    .flatMap(roles -> {
-//
-//                                        String targetUrl = determineTargetUrl(roles);
-//
-////                                        webFilterExchange.getExchange().getResponse().setStatusCode(org.springframework.http.HttpStatus.FOUND);
-////                                        webFilterExchange.getExchange().getResponse().getHeaders().setLocation(URI.create(targetUrl));
-//
-//                                        return webFilterExchange.getExchange().getResponse().setComplete();
-//                                    });
-//                        }
+                        if (accessToken != null) {
+                            return extractRolesFromToken(accessToken.getTokenValue())
+                                    .flatMap(roles -> {
+
+                                        String targetUrl = determineTargetUrl(roles);
+
+                                        webFilterExchange.getExchange().getResponse().setStatusCode(org.springframework.http.HttpStatus.FOUND);
+                                        webFilterExchange.getExchange().getResponse().getHeaders().setLocation(URI.create(targetUrl));
+
+                                        return webFilterExchange.getExchange().getResponse().setComplete();
+                                    });
+                        }
                         return Mono.empty();
                     });
         }

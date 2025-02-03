@@ -91,13 +91,13 @@ public class SecurityConfig {
         return new ReactorNettyWebSocketClient();
     }
 
-    @Bean
-    public WebFilter logTokenRelay() {
-        return (exchange, chain) -> {
-            exchange.getRequest().getHeaders().forEach((name, values) -> {
-                System.out.println(name + ": " + values);
-            });
-            return chain.filter(exchange);
-        };
-    }
+//    @Bean
+//    public WebFilter logTokenRelay() {
+//        return (exchange, chain) -> {
+//            exchange.getRequest().getHeaders().forEach((name, values) -> {
+//                System.out.println(name + ": " + values);
+//            });
+//            return chain.filter(exchange);
+//        };
+//    }
 }

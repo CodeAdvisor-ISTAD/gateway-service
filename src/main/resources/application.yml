@@ -2,7 +2,6 @@ client-security-matchers: >
   /bookmark/**,
   /history/**,
   /ces/**,
-  /forum/**,
   /login/**,
   /oauth2/**,
   /logout/**,
@@ -13,7 +12,6 @@ client-security-matchers: >
   /contents/**,
   /users/**,
   /media/**,
-  /forums/**,
   /notifications/**,
   /community/**,
   /ces/**,
@@ -46,7 +44,7 @@ spring:
   application:
     name: gateway-server
   profiles:
-    active: seu
+    active: dev
   config:
     import: "configserver:"
   cloud:

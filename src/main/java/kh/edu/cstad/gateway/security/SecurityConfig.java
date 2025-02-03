@@ -64,7 +64,7 @@ public class SecurityConfig {
                 .formLogin(ServerHttpSecurity.FormLoginSpec::disable)
                 .csrf(ServerHttpSecurity.CsrfSpec::disable)
                 .cors(ServerHttpSecurity.CorsSpec::disable)
-//                .oauth2Client(Customizer.withDefaults())
+                .oauth2Client(Customizer.withDefaults())
                 .logout(logoutSpec -> logoutSpec
                         .logoutSuccessHandler(serverLogoutSuccessHandler()));
 

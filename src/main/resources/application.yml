@@ -15,6 +15,7 @@ client-security-matchers: >
   /notifications/**,
   /community/**,
   /ces/**,
+  /identity/**
 
 client-permit-matchers: >
   /ces/**,
@@ -38,7 +39,8 @@ client-permit-matchers: >
   /health/**,
   /prometheus/**,
   /business/**,
-  /profile/**
+  /profile/**,
+  /identity/**
 
 spring:
   application:

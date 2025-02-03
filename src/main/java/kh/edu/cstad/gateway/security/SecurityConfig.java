@@ -1,8 +1,10 @@
 package kh.edu.cstad.gateway.security;
 
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.security.config.Customizer;
 import org.springframework.security.config.annotation.web.reactive.EnableWebFluxSecurity;
 import org.springframework.security.config.web.server.ServerHttpSecurity;
 import org.springframework.security.oauth2.client.registration.ReactiveClientRegistrationRepository;
@@ -26,7 +28,11 @@ import java.util.stream.Stream;
 
 @Configuration
 @EnableWebFluxSecurity
+@RequiredArgsConstructor
 public class SecurityConfig {
+
+    private final RoleBasedAuthenticationSuccessHandler roleBasedAuthenticationSuccessHandler;
+
 
     @Bean
     SecurityWebFilterChain securityWebFilterChain(ServerHttpSecurity http,
@@ -51,11 +57,14 @@ public class SecurityConfig {
                     oAuth2LoginSpec.authenticationSuccessHandler(new RedirectServerAuthenticationSuccessHandler("/"));
                     oAuth2LoginSpec.authenticationFailureHandler(new RedirectServerAuthenticationFailureHandler("/401"));
                     oAuth2LoginSpec.authorizationRequestResolver(pkceResolver(repository));
+                    oAuth2LoginSpec.authenticationSuccessHandler(roleBasedAuthenticationSuccessHandler);
+
                 })
                 .httpBasic(ServerHttpSecurity.HttpBasicSpec::disable)
                 .formLogin(ServerHttpSecurity.FormLoginSpec::disable)
                 .csrf(ServerHttpSecurity.CsrfSpec::disable)
                 .cors(ServerHttpSecurity.CorsSpec::disable)
+                .oauth2Client(Customizer.withDefaults())
                 .logout(logoutSpec -> logoutSpec
                         .logoutSuccessHandler(serverLogoutSuccessHandler()));
 

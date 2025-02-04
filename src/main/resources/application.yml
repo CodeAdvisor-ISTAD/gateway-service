@@ -2,6 +2,7 @@ client-security-matchers: >
   /bookmark/**,
   /history/**,
   /ces/**,
+  /forums/**,
   /login/**,
   /oauth2/**,
   /logout/**,

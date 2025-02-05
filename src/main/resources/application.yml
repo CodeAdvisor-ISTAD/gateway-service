@@ -15,7 +15,6 @@ client-security-matchers: >
   /media/**,
   /notifications/**,
   /community/**,
-  /ces/**,
   /identity/**
 
 client-permit-matchers: >
